@@ -32,7 +32,7 @@ namespace ConsoleApp1.VO
 
 		//Propias
 
-			private void comprobarSiOperacionIntroducida()
+			private bool comprobarSiOperacionIntroducida(string llamadaDe)
 		{
 			
 			int indice = textBox1.GetFirstCharIndexOfCurrentLine();
@@ -45,15 +45,46 @@ namespace ConsoleApp1.VO
 				primerCaracter.Equals('*') ||
 				primerCaracter.Equals('/'))
 			{
-				textBox1.Text = string.Empty;
+				if (llamadaDe.Equals("numero"))
+				{
+					textBox1.Text = string.Empty;					
+				}
+				return true;
+
+			} else
+			{
+				return false;
 			}
+		}
+
+		private bool comprobarSiNumeroDespuesComa()
+		{
+			if (!textBox1.Text.Equals(""))
+			{
+				char ultimoCaracter = textBox1.Text.Last();
+
+				if (ultimoCaracter.Equals(','))
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			} else
+			{
+				return false;
+			}
+			
+
+			
 		}
 
 		//OPERACIONES
 
 		private void button1_Click(object sender, EventArgs e) //boton +
 		{
-			if (!resultadoDado)
+			if (!resultadoDado && comprobarSiNumeroDespuesComa() && !comprobarSiOperacionIntroducida(" "))
 			{
 				operando1 = Double.Parse(textBox1.Text);
 				operacion = '+';
@@ -66,7 +97,7 @@ namespace ConsoleApp1.VO
 
 		private void botonResta_Click(object sender, EventArgs e)
 		{
-			if (!resultadoDado)
+			if (!resultadoDado && comprobarSiNumeroDespuesComa() && !comprobarSiOperacionIntroducida(" "))
 			{
 				operando1 = Double.Parse(textBox1.Text);
 				operacion = '-';
@@ -79,7 +110,7 @@ namespace ConsoleApp1.VO
 
 		private void botonProducto_Click(object sender, EventArgs e)
 		{
-			if (!resultadoDado)
+			if (!resultadoDado && comprobarSiNumeroDespuesComa() && !comprobarSiOperacionIntroducida(" "))
 			{
 				operando1 = Double.Parse(textBox1.Text);
 				operacion = '*';
@@ -91,7 +122,7 @@ namespace ConsoleApp1.VO
 
 		private void botonDivision_Click(object sender, EventArgs e)
 		{
-			if (!resultadoDado)
+			if (!resultadoDado && comprobarSiNumeroDespuesComa() && !comprobarSiOperacionIntroducida(" "))
 			{
 				operando1 = Double.Parse(textBox1.Text);
 				operacion = '/';
@@ -106,7 +137,7 @@ namespace ConsoleApp1.VO
 
 		private void botonCero_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "0";
@@ -115,7 +146,7 @@ namespace ConsoleApp1.VO
 
 		private void botonUno_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "1";
@@ -124,7 +155,7 @@ namespace ConsoleApp1.VO
 
 		private void botonDos_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "2";
@@ -133,7 +164,7 @@ namespace ConsoleApp1.VO
 
 		private void botonTres_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "3";
@@ -142,7 +173,7 @@ namespace ConsoleApp1.VO
 
 		private void botonCuatro_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "4";
@@ -151,7 +182,7 @@ namespace ConsoleApp1.VO
 
 		private void botonCinco_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "5";
@@ -160,7 +191,7 @@ namespace ConsoleApp1.VO
 
 		private void botonSeis_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "6";
@@ -169,7 +200,7 @@ namespace ConsoleApp1.VO
 
 		private void botonSiete_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "7";
@@ -178,7 +209,7 @@ namespace ConsoleApp1.VO
 
 		private void botonOcho_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "8";
@@ -187,7 +218,7 @@ namespace ConsoleApp1.VO
 
 		private void botonNueve_Click(object sender, EventArgs e)
 		{
-			comprobarSiOperacionIntroducida();
+			comprobarSiOperacionIntroducida("numero");
 			if (!resultadoDado)
 			{
 				textBox1.Text += "9";
@@ -207,33 +238,36 @@ namespace ConsoleApp1.VO
 
 		}
 
-		//boton doble función (borra o da el resultado)
-		private void botonC_igual_Click(object sender, EventArgs e)
+		
+		private void botonC_igual_Click(object sender, EventArgs e) //boton doble función (borra o da el resultado)
 		{
-			if (!borrar)
+			if (comprobarSiNumeroDespuesComa())
 			{
-				//llamada a función gestionOperacion de ControladorBLL
-				operando2 = Double.Parse(textBox1.Text);
-				resultado = controlador.gestionOperacion(operando1, operando2, operacion);
-				textBox1.Text = resultado.ToString();
-				borrar = true;
+				if (!borrar && !comprobarSiOperacionIntroducida(" "))
+				{
+					//llamada a función gestionOperacion de ControladorBLL
+					operando2 = Double.Parse(textBox1.Text);
+					resultado = controlador.gestionOperacion(operando1, operando2, operacion);
+					textBox1.Text = resultado.ToString();
 
-				operando1 = 0;
-				operando2 = 0;
-				operacion = ' ';
-				resultado = 0;
-				resultadoDado = true;
+					borrar = true;
 
-
-			}
-			else
-			{
-				textBox1.Text = string.Empty;
-				borrar = false;
-				resultadoDado = false;
-			}
+					operando1 = 0;
+					operando2 = 0;
+					operacion = ' ';
+					resultado = 0;
+					resultadoDado = true;
+				}
+				else
+				{
+					textBox1.Text = string.Empty;
+					borrar = false;
+					resultadoDado = false;
+					comaIntroducida = false;
+				}
+			}				
 		}
 
-		
+
 	}
 }
