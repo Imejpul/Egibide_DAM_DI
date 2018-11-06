@@ -32,7 +32,7 @@ namespace ConsoleApp1.VO
 
 		//Propias
 
-			private bool comprobarSiOperacionIntroducida(string llamadaDe)
+		private bool comprobarSiOperacionIntroducida(string llamadaDe)
 		{
 			
 			int indice = textBox1.GetFirstCharIndexOfCurrentLine();
