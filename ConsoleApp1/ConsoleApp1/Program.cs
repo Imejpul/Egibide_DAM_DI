@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CalculadoraMVC
 {
@@ -11,6 +12,7 @@ namespace CalculadoraMVC
 		static void Main(string[] args)
 		{
 			#region calculadoraXconsola
+			/*
 			//INICIALIZACIONES
 			int opcion = -1;
 			double resultado = 0;
@@ -161,7 +163,15 @@ namespace CalculadoraMVC
 
 			} while (opcion != 6);
 
+	*/
+
 			#endregion
+
+			//ConsoleApp1.VO.InterfazCalcMVC interfaz = new ConsoleApp1.VO.InterfazCalcMVC();
+
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new ConsoleApp1.VO.InterfazCalcMVC());
 		}
 	}
 }
