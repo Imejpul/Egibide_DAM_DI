@@ -94,7 +94,6 @@
 			this.textBox1.Size = new System.Drawing.Size(764, 128);
 			this.textBox1.TabIndex = 0;
 			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// tableLayoutPanel3
 			// 
@@ -324,7 +323,6 @@
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Name = "InterfazCalcMVC";
 			this.Text = "InterfazCalcMVC";
-			this.Load += new System.EventHandler(this.InterfazCalcMVC_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
